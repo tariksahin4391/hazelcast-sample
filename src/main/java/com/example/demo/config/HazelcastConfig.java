@@ -17,7 +17,7 @@ public class HazelcastConfig {
                 .addMapConfig(new MapConfig()
                         .setName("my-model")
                         .setEvictionConfig(evictionConfig)
-                        .setTimeToLiveSeconds(20)
+                        .setTimeToLiveSeconds(40)
                 );
         config.getNetworkConfig().setPort(5701).setPortAutoIncrement(true).setPortCount(4);
         config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);

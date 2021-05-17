@@ -18,9 +18,14 @@ public class HazelcastServiceImpl implements HazelcastService {
     }
 
     @Override
-    public MyCacheModel putToCache(String key,String value){
+    public String putToCache(String key,String value){
         HazelcastInstance hazelcastClient = Hazelcast.getHazelcastInstanceByName("hz-cache");
         IMap<String,MyCacheModel> cacheMap = hazelcastClient.getMap("my-model");
-        return cacheMap.put(key,new MyCacheModel(value));
+        MyCacheModel myCacheModel = cacheMap.get(key);
+        if(myCacheModel == null)
+            cacheMap.put(key,new MyCacheModel(value));
+        else
+            cacheMap.replace(key,new MyCacheModel(value));
+        return "OK";
     }
 }

@@ -20,7 +20,7 @@ public class HazelcastController {
     }
 
     @GetMapping("/put-to-cache/{key}/{value}")
-    public ResponseEntity<MyCacheModel> putToCache(@PathVariable String key,@PathVariable String value){
+    public ResponseEntity<String> putToCache(@PathVariable String key,@PathVariable String value){
         return ResponseEntity.status(200).body(hazelcastService.putToCache(key,value));
     }
 }
