@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.model.Constant;
 import com.hazelcast.config.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,16 +15,15 @@ public class HazelcastConfig {
                 //.setMaxSizePolicy(MaxSizePolicy.PER_NODE)
                 .setSize(3);//MB
         Config config = new Config()
-                .setInstanceName("hz-cache")
+                .setInstanceName(Constant.HZ_INSTANCE)
                 .addMapConfig(new MapConfig()
-                        .setName("my-model")
+                        .setName(Constant.MY_MODEL_MAP)
                         .setEvictionConfig(evictionConfig)
                         .setTimeToLiveSeconds(600)
-                );
-                /*.addListConfig(new ListConfig()
-                        .setName("my-model")
+                )
+                .addListConfig(new ListConfig()
+                        .setName(Constant.MY_MODEL_LIST)
                         .setMaxSize(1000));
-                 */
         config.getNetworkConfig().setPort(5701).setPortAutoIncrement(true).setPortCount(4);
         config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);

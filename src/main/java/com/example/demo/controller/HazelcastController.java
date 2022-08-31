@@ -30,4 +30,9 @@ public class HazelcastController {
         hazelcastService.putManyElementToCache();
         return ResponseEntity.status(200).body("OK");
     }
+
+    @GetMapping("/get-by-cacheable/{key}")
+    public ResponseEntity<MyCacheModel> getByCacheable(@PathVariable("key") String key) {
+        return ResponseEntity.status(200).body(hazelcastService.getByCacheable(key));
+    }
 }

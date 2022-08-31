@@ -7,4 +7,5 @@ public interface HazelcastService {
     MyCacheModel getFromCache(String cacheKey) throws JsonProcessingException;
     String putToCache(String key,String value);
     void putManyElementToCache();
+    MyCacheModel getByCacheable(String key);
 }
